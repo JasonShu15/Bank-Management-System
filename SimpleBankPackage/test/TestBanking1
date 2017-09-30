@@ -1,0 +1,12 @@
+public class TestBanking1 {
+ public static void main(String[] args) {
+    Account  account=null;//account对象没有赋任何初始值，类似于置0操作
+    account=new Account(500);/*1.由于构造器的存在，会自动加载构造器的方法，这里的500就相当于init_balance参数值为500
+                               2.执行完本条语句之后，balance=500
+                               */
+   	account.withdraw(150);//balance=balance-amt,执行完本条语句之后balance=350  
+    account.deposit(22.50);//balance=balance+amt,执行完本条语句后balance=372.5
+   	account.withdraw(47.62);//执行完本条语句后balance=324.88
+    System.out.println("The account has a balance of " + account.getBalance());//getBalance()方法返回余额(double类型)
+    }
+}
