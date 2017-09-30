@@ -1,0 +1,29 @@
+public class Customer {
+	private String firstName;
+	private String lastName;
+	private Account account;
+	public Customer(String f, String l)//在Eclipse中，可以通过Source-Generate constructor using fields，再选中firstName，lastName
+  {
+		firstName = f;
+		lastName = l;
+	}
+	public String getFirstName()
+	{
+		return firstName;
+	}
+	public String getLastName()
+	{
+		return lastName;
+	}
+	public void setAccount(Account account)
+	{
+		this.account=account;/*1.成员变量与方法内部的变量重名，this.account相当于调用Customer类的account这个成员变量
+	                         2.第二个account是用作setAccount这个方法的参数
+		                       
+	}
+  public Account getAccount()//这个方法不含参数
+	{
+		return account;
+	}
+	
+}
