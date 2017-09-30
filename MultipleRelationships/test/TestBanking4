@@ -1,26 +1,21 @@
 public class TestBanking4 {
 
   public static void main(String[] args) {
-    Bank bank = new Bank();/*分配一个Customer类型的数组给bank对象，这个数组的长度为100
-                                                                 也就是说，bank对象有一个属性（众多属性中的一个）是有一个长度为100的Customer类型数组*/
-    // Add Customer Jane, Simms
+    Bank bank = new Bank();
     bank.addCustomer("Jane", "Simms");
-    //Add Customer Owen, Bryant
     bank.addCustomer("Owen", "Bryant");
-    // Add Customer Tim, Soley
     bank.addCustomer("Tim", "Soley");
-    // Add Customer Maria, Soley
     bank.addCustomer("Maria", "Soley");
-    System.out.println(bank.getNumOfCustomers());/*编译结果为4，想一想是为什么？这是java的规则，当没有初始化的时候
-                                                                                                                       它会自动初始化为0,所以numberOfCustomers初始值为0*/
-    for (int i=0; i<bank.getNumOfCustomers();i++ )
-  /*1.这里bank.getNumOfCustomers等于NumOfCustomers但由于这里并没有定义NumOfCustomers，只能这样调用
-    2.i<NumOfCustomers,for语句是怎么知道NumOfCustomers具体值是多少的？前面已经解释过*/
-    {
-      Customer customer = bank.getCustomer(i);/*1.bank.getCustomer(i)返回值为customers[i]
-                                                                                                                     也即是customer=customers[i]
-                                                2.由于前面并没有定义customer，这里需要指出其类型*/
-      System.out.println("Customer [" + (i+1) + "] is "
+    
+        /*1.这里bank.getNumOfCustomers返回值为NumOfCustomers
+          2.NumOfCustomers在这里等于4,因为最它的初始值为1,每定义一个就会进行一次累加
+	  */                    
+    for (int i=0; i<bank.getNumOfCustomers();i++ ){
+     /*1.bank.getCustomer(i)返回值为customers[i],也即是customer分别赋值给customers[i]
+       2.由于前面并没有定义customer，这里需要指出其类型
+      */
+    Customer customer = bank.getCustomer(i);
+    System.out.println("Customer [" + (i+1) + "] is "
 			 + customer.getLastName()
 			 + ", " + customer.getFirstName());
     }
