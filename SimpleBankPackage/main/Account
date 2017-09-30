@@ -1,0 +1,42 @@
+/*
+在 banking 包下创建 Account 类。
+a. 声明一个私有对象属性：balance，这个属性保留了银行帐户的当前（或即时）余额。
+b. 声明一个带有一个参数（ init_balance ）的公有构造器 ，这个参数为balance属性赋值。
+c. 声明一个公有方法 getBalance，该方法用于获取余额。
+d. 声明一个公有方法 deposit,该方法向当前余额增加金额。
+e. 声明一个公有方法 withdraw 从当前余额中减去金额
+*/
+public class Account {
+   private double balance;
+   
+   public Account(double init_balance){
+	   balance=init_balance;/*
+                            1.如果只有Account类只有balance属性而没有这个构造器，那么balance这个属性虽然定义了，但不能被后面其他类所用。
+	                            因为其他类在用Account这个类的时候，是要调用Account类里面的方法而不是属性的。
+	                          2.init_balance是一个参数它的作用是为balance属性赋值
+                            3.构造器没有返回值
+                          */
+   }
+	
+  public double getBalance()
+  {
+	  return balance;
+    /*
+   1.成员方法，必须有返回值，并且返回值的类型和balance的类型是一致的(double)
+   2.将返回值的类型double改为int，会报错，Type mismatch: cannot convert from double to int
+   */
+  }
+  
+  public void deposit(double amt)/*1.deposit方法没有返回值
+                                   2.如果方法是纯粹的运算赋值以及属性设置是不需要返回值的
+                                   3.如果是需要在调用方法的地方要通过该方法拿到一个对象，就定义返回值。*/
+  {
+	  balance += amt;
+  }
+  
+  public void withdraw(double amt){
+	  balance -= amt;
+  }
+  
+
+}
