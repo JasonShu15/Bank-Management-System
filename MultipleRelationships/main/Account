@@ -1,0 +1,23 @@
+public class Account {
+   private double balance;
+   public Account(double init_balance)
+   {
+	   balance=init_balance;
+   }
+   public double getBalance(){
+	  return balance;
+  }
+   public boolean deposit(double amt){
+	  balance += amt;
+	  return true;
+  }
+  /*声明一个公有方法withdraw从当前余额中减去金额。修改 withdraw方法来检查提款数目是否大于余额。
+   *如果amt小于balance, 则从余额中扣除提款数目并返回 true，否则余额不变返回false。*/
+   public boolean withdraw(double amt){
+	  if(balance<amt){
+		  return false; //return后面的语句不执行，请注意。
+	  }
+	  balance -= amt;
+	  return true;
+  }
+}
