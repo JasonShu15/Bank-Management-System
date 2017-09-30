@@ -1,0 +1,30 @@
+public class Bank {
+//为Bank类增加两个属性customers（Customer对象的数组）和numberofCustomers（整数，追踪下一个customers数组索引）
+private Customer [] customers;/*声明数组的常用方法为String []a，定义一个字符串数组a，这里也就是定义一个Customer
+                                                                           类数组customers
+                                */
+private int numberOfCustomers;
+
+//添加公有构造器，以合适的最大尺寸初始化customers数组
+public Bank()//由于是构造器，这里敲完Bank之后alt+/即可出来这个构造器
+{
+	customers=new Customer[100];/*1.customers的类型前面已经定义，为Customer类数组
+                                  2.本构造器不含参，实例化Bank bank = new Bank()
+                                                                                     之后会分配一个Customer数组*/}
+//添加addCustomer方法
+public void addCustomer(String f,String l)//定义的成员方法，必须有返回值，返回值为空
+{
+	Customer customer=new Customer(f,l);//通过这个形式其实就可以看出Customer类中一定会有一个构造器
+	customers[numberOfCustomers]=customer;/*添加customers数组的第numberOfCustomers个元素
+	                                                                              例如numberOfCustomers=0时，表面数组的第0个元素等于customer*/
+	numberOfCustomers++;
+}
+//添加getNumOfCustomers方法，它返回numberofCustomers属性值
+public int getNumOfCustomers(){
+	return numberOfCustomers;
+}
+//添加getCustomer方法，它返回与给出index相关的客户
+public Customer getCustomer(int index){
+	return customers[index];
+}
+}
