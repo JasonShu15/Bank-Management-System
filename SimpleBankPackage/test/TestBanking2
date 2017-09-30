@@ -1,29 +1,16 @@
 public class TestBanking2 {
   public static void main(String[] args) {
     Customer customer;
-    Account  account;
-    account=new Account(500);
+    Account  accounts;
+    accounts=new Account(500);
     customer=new Customer("Jane","Smith");//初始化firstName="Jane",lastName="Smith"
-    customer.setAccount(account);/*1.调用setAccount方法,account作为参数
-                                   2.进行初始化，如果不进行这么一步的话，那么对后面的getAccount就会产生影响。为什么？
-                                   因为getAccount方法返回值的account是成员变量account，它是属于Customer类的，而参数account才是Account类的，它可以调用withdraw方法。
-                                   3.在这里this.account=account，后面一个account属于Account类，这个过程
-                                     实际上是把后面account的方法教给了前面的那个account
-                                                                                      
-    */ 
-    
-    System.out.println("Withdraw 150.00");
-    customer.getAccount().withdraw(150);/*这句话的作用等同于 account.withdraw(150);
-                                                                                                  始终要明白，这里的getAccount方法返回值是Customer的成员方法
-                                                                                                  它是没有办法调用Account类里面的方法的，必须得通过setAccount这个步骤
-                                                                                                  才能*/
-    System.out.println("Deposit 22.50");
-  	customer.getAccount().deposit(22.50);
-    
-    System.out.println("Withdraw 47.62");
-   	customer.getAccount().withdraw(47.62);
-    
-    // Print out the final account balance
+    customer.setAccount(accounts);//将accounts的值(500)赋给Customer类中的account
+    customer.getAccount().withdraw(150);
+    /* customer.getAccount()返回值account,类型是Account,可以调用Account的方法.
+      在Customer类中,也定义了一个account,类型也是Account,但是它却不能调用Account类的方法,这是为什么?
+    */
+    customer.getAccount().deposit(22.50);
+    customer.getAccount().withdraw(47.62);
     System.out.println("Customer [" + customer.getLastName()
 		       + ", " + customer.getFirstName()
 		       + "] has a balance of " + customer.getAccount().getBalance());
