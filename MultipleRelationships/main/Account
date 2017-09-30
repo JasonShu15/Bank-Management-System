@@ -11,10 +11,12 @@ public class Account {
 	  balance += amt;
 	  return true;
   }
-  /*声明一个公有方法withdraw从当前余额中减去金额。修改 withdraw方法来检查提款数目是否大于余额。
-   *如果amt小于balance, 则从余额中扣除提款数目并返回 true，否则余额不变返回false。*/
-   public boolean withdraw(double amt){
-	  if(balance<amt){
+  
+   
+   public boolean withdraw(double amt)//声明一个公有方法withdraw从当前余额中减去金额。修改withdraw方法来检查提款数目是否大于余额。
+   {
+	  if(balance<amt)//如果amt小于balance, 则从余额中扣除提款数目并返回true，否则余额不变返回false。
+	  {
 		  return false; //return后面的语句不执行，请注意。
 	  }
 	  balance -= amt;
