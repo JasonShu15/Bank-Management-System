@@ -1,0 +1,27 @@
+public class Customer {
+//声明三个属性firstname，lastname和account
+	private String firstName;
+	private String lastName;
+	private Account account;
+//声明一个公有构造器，这个构造器带有两个代表对象属性的参数（f和l）Source-Generate constructor using fields
+	public Customer(String f, String l) {
+		firstName = f;//初始化成员变量
+		lastName = l;
+	}
+//声明两个公有存储器来访问该对象属性，方法getFirstName和getLastName返回相应的属性
+	public String getFirstName(){
+		return firstName;
+	}
+	public String getLastName(){
+		return lastName;
+	}
+//声明setAccount方法来对account属性进行赋值
+	public void setAccount(Account account){
+		this.account=account;
+	}
+//声明getAccount方法来获取account属性
+	public Account getAccount(){
+		return account;
+	}
+	
+}
