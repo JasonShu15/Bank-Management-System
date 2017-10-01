@@ -1,0 +1,88 @@
+public class TestBanking5 {
+  public static void main(String[] args) {
+	  Bank bank = new Bank();
+	  Customer customer;
+	  Account account;
+	  bank.addCustomer("Jane", "Simms");//这里实现两个功能1.customers[0]="Owen""Bryant" 2.numberOfCustomers=1	   
+	  bank.getCustomer(0).setAccount(new SavingAccount(500,0.03));
+    /*
+	   * 1.getCustomer(0)返回值为customers[0]
+	   * 2.new SavingAccount(500,0.03)实现SavingAccount的构造方法,即
+         a.给父类Account的balance变量进行初始化,balance=500
+         b.给当前类SavingAccount的interestRate变量进行初始化,interestRate=0.03
+	   * 3.重点是new SavingAccount(500,0.03)的返回值是什么,构造器不返回具体某一个值，但会返回该对象(SavingAccount)
+     * 4.setAccount方法的参数是Account,但这里是Account,为什么也可以?
+         子类这个类一定是满足父类的类,就比如猫一定是动物,因此动物具有的属性(运动),猫也具备。
+    */
+    
+	  bank.addCustomer("Owen", "Bryant");
+	  customer = bank.getCustomer(1);
+	  customer.setAccount(new CheckingAccount(500));//同上,将参数500传递给父类Account.
+    
+	  bank.addCustomer("Tim", "Soley");
+	  customer = bank.getCustomer(2);
+	  customer.setAccount(new CheckingAccount(500,500));//实现CheckingAccount类中的后一种构造器
+	
+	  bank.addCustomer("Maria", "Soley");
+	  customer = bank.getCustomer(3); 
+	  customer.setAccount(bank.getCustomer(2).getAccount());
+    /*1.bank.getCustomer(2)返回值是其丈夫("Tim Soley"),getAccount获取他丈夫的账户
+      2.Maria Soley通过这种方式和丈夫共享同一个账户
+     */
+    System.out.println("查看Jane Smith的账户信息");
+	  customer = bank.getCustomer(0);//返回值customers[0]，也即是Jane Simth
+	  account = customer.getAccount();//返回值account
+	  System.out.println("Withdraw 150.00: " + account.withdraw(150.00));
+	  System.out.println("Deposit 22.50: " + account.deposit(22.50));
+	  System.out.println("Withdraw 47.62: " + account.withdraw(47.62));
+	  System.out.println("Withdraw 400.00: " + account.withdraw(400.00));
+	  System.out.println("Customer [" + customer.getLastName()
+			       + ", " + customer.getFirstName()
+			       + "] has a balance of " + account.getBalance());
+             
+	  System.out.println();//和前面的输出隔开
+	  System.out.println("查看Owen Bryant的账户信息");
+	  customer = bank.getCustomer(1);
+	  account = customer.getAccount();
+	  System.out.println("Withdraw 150.00: " + account.withdraw(150.00));//balanc=350
+	  System.out.println("Deposit 22.50: " + account.deposit(22.50));//balance=372.5
+	  System.out.println("Withdraw 47.62: " + account.withdraw(47.62));//balance=324.88
+	  System.out.println("Withdraw 400.00: " + account.withdraw(400.00));//return false
+	  System.out.println("Customer [" + customer.getLastName()
+			       + ", " + customer.getFirstName()
+			       + "] has a balance of " + account.getBalance()); 
+             
+	  System.out.println();
+	  System.out.println("查看Tim Soley的账户信息");
+	  customer = bank.getCustomer(2);
+	  account = customer.getAccount();
+	  /*1.这个时候的withdraw方法不再是Account类的withdraw方法，而是CheckingAccount的withdraw方法
+	   *2.CheckingAccount类中是怎么传递的？首先CheckingAccount构造器使得此时balance=500
+	   *  overdraftProtection=500,这也是在前面所说的对成员方法的理解，这两个方法之间通过成员方法而产生联系
+	   *3.再来读后面的语句，拿最后一个amt=400来说，此时amt=400,balance=324.88,amt-balance=75.12
+	   *  读else语句，那么overdraftProtection=overdraftProtection-(amt-balance)=500-75.12
+	   *  并且balance=0*/
+	  System.out.println("Withdraw 150.00: " + account.withdraw(150.00));
+	  System.out.println("Deposit 22.50: " + account.deposit(22.50));
+	  System.out.println("Withdraw 47.62: " + account.withdraw(47.62));
+	  System.out.println("Withdraw 400.00: " + account.withdraw(400.00));
+	  // Print out the final account balance
+	  System.out.println("Customer [" + customer.getLastName()
+			       + ", " + customer.getFirstName()
+			       + "] has a balance of " + account.getBalance());
+             
+	  System.out.println();
+	  // Test a Checking Account with overdraft protection
+	  System.out.println("查看 Maria Soley和她丈夫Tim的账户信息");
+	  customer = bank.getCustomer(3);
+	  account = customer.getAccount();
+	  // Perform some account transactions
+	  System.out.println("Deposit 150.00: " + account.deposit(150.00));//此时她的丈夫的余额是多少呢？0！
+	  System.out.println("Withdraw 750.00: " + account.withdraw(750.00));
+	  // Print out the final account balance
+	  System.out.println("Customer [" + customer.getLastName()
+			       + ", " + customer.getFirstName()
+			       + "] has a balance of " + account.getBalance());
+
+  }
+}
