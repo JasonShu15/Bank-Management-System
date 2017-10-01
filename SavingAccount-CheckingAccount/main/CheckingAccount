@@ -1,0 +1,37 @@
+public class CheckingAccount extends Account//继承Account方法
+{
+private double overdraftProtection;
+public CheckingAccount(double init_balance)
+{
+	super(init_balance);
+  /*1.super的功能之一：调用父类(Account)中声明为private的变量(balance)。
+	  2.这句话就等同于将init_balance赋值给父类Account的balance变量*/
+}
+public CheckingAccount(double init_balance, double overdratProtection)//两个参数
+{
+	super(init_balance);//同上
+	this.overdraftProtection = overdratProtection;
+}
+@Override//父类当中有withdraw方法,这里也有,但是这里的方法并不会影响父类当中的withdraw
+public boolean withdraw(double amt){
+	
+	if(balance >=amt)//余额足够
+  {
+		balance -=amt;
+	}
+	else{
+		
+		if(overdraftProtection >=(amt-balance))//透支保护足够
+    {
+			overdraftProtection -=(amt-balance);
+			balance=0;
+		}
+		
+		else//余额不足，并且透支保护也不足
+    {
+			return false;
+		}
+	}
+	return true;
+}
+}
