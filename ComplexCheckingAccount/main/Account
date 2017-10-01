@@ -11,10 +11,11 @@ public class Account {
 	  return true;
   }
    public boolean withdraw(double amt){
-	  if(balance<amt){
+	  if(balance<amt)//余额不足,返回false
+	  {
 		  return false; 
 	  }
 	  balance -= amt;
-	  return true;
+	  return true;//余额足够,返回true.
   }
 }
