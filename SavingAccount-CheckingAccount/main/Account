@@ -1,0 +1,20 @@
+public class Account {
+   protected double balance;//声明为protected的变量可以被同一包内的类访问，也可以被子类访问
+   public Account(double init_balance){
+	   balance=init_balance;
+   }
+   public double getBalance(){
+	  return balance;
+  }
+   public boolean deposit(double amt){
+	  balance += amt;
+	  return true;
+  }
+   public boolean withdraw(double amt){
+	  if(balance<amt){
+		  return false; 
+	  }
+	  balance -= amt;
+	  return true;
+  }
+}
