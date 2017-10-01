@@ -1,4 +1,4 @@
-public class TestBanking5_1 {
+public class TestBanking6 {
   public static void main(String[] args) {
     NumberFormat currency_format = NumberFormat.getCurrencyInstance();
     Bank bank = new Bank();
