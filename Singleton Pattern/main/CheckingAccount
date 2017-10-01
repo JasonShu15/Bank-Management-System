@@ -1,0 +1,32 @@
+public class CheckingAccount extends Account
+{
+private double overdraftProtection;
+public CheckingAccount(double init_balance)
+{
+	super(init_balance);
+}
+public CheckingAccount(double init_balance, double overdratProtection)//两个参数
+{
+	super(init_balance);
+	this.overdraftProtection = overdratProtection;
+}
+@Override
+public boolean withdraw(double amt){
+	//余额足够
+	if(balance >=amt){
+		balance -=amt;
+	}
+	else{
+		//透支保护足够
+		if(overdraftProtection >=(amt-balance)){
+			overdraftProtection -=(amt-balance);
+			balance=0;
+		}
+		//余额不足，并且透支保护也不足
+		else{
+			return false;
+		}
+	}
+	return true;
+}
+}
