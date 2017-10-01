@@ -26,3 +26,4 @@ SavingAccount-CheckingAccount项目实现一个目的：
 2.@override重写的理解
 3.子类和父类关系的理解,子类可以实现父类所有的方法.
 4.子类在实现继承的时候,用到了extends关键字,那么在类中一定要有构造器
+
