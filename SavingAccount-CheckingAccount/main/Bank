@@ -1,0 +1,20 @@
+public class Bank {
+private Customer [] customers;
+private int numberOfCustomers;
+public Bank()
+{
+	customers=new Customer[100];
+}
+public void addCustomer(String f,String l)
+{
+	Customer customer=new Customer(f,l);
+	customers[numberOfCustomers]=customer;
+	numberOfCustomers++;
+}
+public int getNumOfCustomers(){
+	return numberOfCustomers;//添加getNumOfCustomers方法，它返回numberofCustomers属性值
+}
+public Customer getCustomer(int index){
+	return customers[index];//添加getCustomer方法，它返回与给出index相关的客户
+}
+}
