@@ -2,7 +2,10 @@ public class TestBanking4 {
 
   public static void main(String[] args) {
     Bank bank = new Bank();
-    bank.addCustomer("Jane", "Simms");
+    bank.addCustomer("Jane", "Simms");/*这条语句执行完之后，产生两个效果
+                                         1.customers[0]="Jane""Simms"
+	                                 2. numberOfCustomers=1
+					*/
     bank.addCustomer("Owen", "Bryant");
     bank.addCustomer("Tim", "Soley");
     bank.addCustomer("Maria", "Soley");
